@@ -15,21 +15,22 @@ import java.awt.Graphics2D;
 public class MapGenerator {
     
     public int map[][];
-    public int brickDiameter;
-    public int brickLength;
+    public int brickWidth;
+    public int brickHeight;
     
     public MapGenerator (int row, int col) {
         map = new int[row][col];
-        for(int k =0; k<map.length; k++) {
-            for(int l =0; l<map[0].length; l++) {
-                map[k][l] = 1;
+        for(int o =0; o<map.length; o++) {
+            for(int p =0; p<map[0].length; p++) 
+            {
+                map[o][p] = 1;
             }
         }
-        brickDiameter = 840/col;
-        brickLength = 350/row;
+        brickWidth = 550/col;
+        brickHeight = 80/row;
     }
     
-    public void draw(Graphics2D gtwo) {
+    public void draw(Graphics2D g) {
         
         for(int o = 0; o<map.length; o++) {
             
@@ -37,14 +38,12 @@ public class MapGenerator {
                 
                 if(map[o][p] > 0) {
                     
-                    gtwo.setColor(Color.blue);
-                    int k = 0;
-                    int l = 0;
-                    gtwo.fillRect(k * brickDiameter + 82, l * brickLength + 52, brickDiameter, brickLength);
+                    g.setColor(Color.blue);
+                    g.fillRect(p * brickWidth + 65, o * brickHeight + 70, brickWidth, brickHeight);
                     
-                    gtwo.setStroke(new BasicStroke(4));
-                    gtwo.setColor(Color.yellow);
-                    gtwo.drawRect(k * brickDiameter + 82, l * brickLength + 52, brickDiameter, brickLength);
+                    g.setStroke(new BasicStroke(3));
+                    g.setColor(Color.black);
+                    g.drawRect(p * brickWidth + 65, o * brickHeight + 70, brickWidth, brickHeight);
                 }
             }
         }
@@ -55,3 +54,4 @@ public class MapGenerator {
         map[row][col] = value;
     }
 }
+
